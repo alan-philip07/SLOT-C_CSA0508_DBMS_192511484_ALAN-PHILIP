@@ -1,0 +1,97 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 33
+Server version: 9.6.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use university;
+Database changed
+mysql> select * from student;
++-------+-------+--------+------------+-----------+-----------+
+| RegNo | Name  | Gender | DOB        | MobileNo  | City      |
++-------+-------+--------+------------+-----------+-----------+
+|   101 | Arjun | M      | 2002-05-14 | 987654321 | Mumbai    |
+|   102 | Priya | F      | 2001-11-23 | 912345678 | Delhi     |
+|   103 | Rahul | M      | 2003-02-10 | 998877665 | Chennai   |
+|   104 | Sneha | F      | 2002-07-30 | 909090909 | Bangalore |
+|   105 | Karan | M      | 2001-09-18 | 919191919 | Kolkata   |
++-------+-------+--------+------------+-----------+-----------+
+5 rows in set (0.018 sec)
+
+mysql> update student set name='Raghav' where RegNo=103;
+Query OK, 1 row affected (0.051 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++-------+--------+--------+------------+-----------+-----------+
+| RegNo | Name   | Gender | DOB        | MobileNo  | City      |
++-------+--------+--------+------------+-----------+-----------+
+|   101 | Arjun  | M      | 2002-05-14 | 987654321 | Mumbai    |
+|   102 | Priya  | F      | 2001-11-23 | 912345678 | Delhi     |
+|   103 | Raghav | M      | 2003-02-10 | 998877665 | Chennai   |
+|   104 | Sneha  | F      | 2002-07-30 | 909090909 | Bangalore |
+|   105 | Karan  | M      | 2001-09-18 | 919191919 | Kolkata   |
++-------+--------+--------+------------+-----------+-----------+
+5 rows in set (0.013 sec)
+
+mysql> delete from faculty where Resigned='Y';
+Query OK, 2 rows affected (0.096 sec)
+
+mysql> select * from faculty;
++-------+---------+--------+------------+------------+-----------+----------+
+| FacNo | FacName | Gender | DOB        | DOJ        | MobileNo  | Resigned |
++-------+---------+--------+------------+------------+-----------+----------+
+| F001  | Ramesh  | M      | 1980-06-15 | 2010-07-01 | 987654321 | N        |
+| F003  | Arvind  | M      | 1978-12-05 | 2008-11-10 | 998877665 | N        |
+| F005  | Kiran   | M      | 1983-04-22 | 2011-09-05 | 919191919 | N        |
++-------+---------+--------+------------+------------+-----------+----------+
+3 rows in set (0.015 sec)
+
+mysql> alter table faculty add column age int;
+Query OK, 0 rows affected (0.176 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE faculty SET Age = 46 WHERE FacNo = 'F001';
+Query OK, 1 row affected (0.074 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE faculty SET Age = 47 WHERE FacNo = 'F003';
+Query OK, 1 row affected (0.051 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE faculty SET Age = 43 WHERE FacNo = 'F005';
+Query OK, 1 row affected (0.025 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from faculty;
++-------+---------+--------+------------+------------+-----------+----------+------+
+| FacNo | FacName | Gender | DOB        | DOJ        | MobileNo  | Resigned | age  |
++-------+---------+--------+------------+------------+-----------+----------+------+
+| F001  | Ramesh  | M      | 1980-06-15 | 2010-07-01 | 987654321 | N        |   46 |
+| F003  | Arvind  | M      | 1978-12-05 | 2008-11-10 | 998877665 | N        |   47 |
+| F005  | Kiran   | M      | 1983-04-22 | 2011-09-05 | 919191919 | N        |   43 |
++-------+---------+--------+------------+------------+-----------+----------+------+
+3 rows in set (0.016 sec)
+
+mysql> update faculty set age=50 where facno='f003';
+Query OK, 1 row affected (0.059 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from faculty;
++-------+---------+--------+------------+------------+-----------+----------+------+
+| FacNo | FacName | Gender | DOB        | DOJ        | MobileNo  | Resigned | age  |
++-------+---------+--------+------------+------------+-----------+----------+------+
+| F001  | Ramesh  | M      | 1980-06-15 | 2010-07-01 | 987654321 | N        |   46 |
+| F003  | Arvind  | M      | 1978-12-05 | 2008-11-10 | 998877665 | N        |   50 |
+| F005  | Kiran   | M      | 1983-04-22 | 2011-09-05 | 919191919 | N        |   43 |
++-------+---------+--------+------------+------------+-----------+----------+------+
+3 rows in set (0.013 sec)
+
+mysql>

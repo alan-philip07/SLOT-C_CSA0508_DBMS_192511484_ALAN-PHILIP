@@ -1,0 +1,113 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 34
+Server version: 9.6.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use university;
+Database changed
+mysql> select regno, name, dob from student;
++-------+--------+------------+
+| regno | name   | dob        |
++-------+--------+------------+
+|   101 | Arjun  | 2002-05-14 |
+|   102 | Priya  | 2001-11-23 |
+|   103 | Raghav | 2003-02-10 |
+|   104 | Sneha  | 2002-07-30 |
+|   105 | Karan  | 2001-09-18 |
++-------+--------+------------+
+5 rows in set (0.019 sec)
+
+mysql> select * from student where gender = 'f';
++-------+-------+--------+------------+-----------+-----------+
+| RegNo | Name  | Gender | DOB        | MobileNo  | City      |
++-------+-------+--------+------------+-----------+-----------+
+|   102 | Priya | F      | 2001-11-23 | 912345678 | Delhi     |
+|   104 | Sneha | F      | 2002-07-30 | 909090909 | Bangalore |
++-------+-------+--------+------------+-----------+-----------+
+2 rows in set (0.014 sec)
+
+mysql> select * from course where courseno = 'c01';
++----------+-------------+------------+-------+--------+-------+
+| CourseNo | CourseDesc  | CourseType | SemNo | HallNo | FacNo |
++----------+-------------+------------+-------+--------+-------+
+| C01      | Mathematics | T          | 1     | H101   | F123  |
++----------+-------------+------------+-------+--------+-------+
+1 row in set (0.017 sec)
+
+mysql> select * from faculty where doj < '2014-11-01';
++-------+---------+--------+------------+------------+-----------+----------+------+
+| FacNo | FacName | Gender | DOB        | DOJ        | MobileNo  | Resigned | age  |
++-------+---------+--------+------------+------------+-----------+----------+------+
+| F001  | Ramesh  | M      | 1980-06-15 | 2010-07-01 | 987654321 | N        |   46 |
+| F003  | Arvind  | M      | 1978-12-05 | 2008-11-10 | 998877665 | N        |   50 |
+| F005  | Kiran   | M      | 1983-04-22 | 2011-09-05 | 919191919 | N        |   43 |
++-------+---------+--------+------------+------------+-----------+----------+------+
+3 rows in set (0.034 sec)
+
+mysql> select * from course where hallno <> 'H101
+    '> ';
++----------+-------------+------------+-------+--------+-------+
+| CourseNo | CourseDesc  | CourseType | SemNo | HallNo | FacNo |
++----------+-------------+------------+-------+--------+-------+
+| C01      | Mathematics | T          | 1     | H101   | F123  |
+| C02      | DBMS        | T          | 3     | H102   | F245  |
+| C03      | DataStruct  | T          | 4     | H103   | F356  |
+| C04      | Python      | P          | 2     | H104   | F478  |
+| C05      | Physics     | T          | 2     | H105   | F589  |
++----------+-------------+------------+-------+--------+-------+
+5 rows in set (0.014 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE Name LIKE '%sh';
+Empty set (0.037 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE Name LIKE '%ha%';
++-------+--------+--------+------------+-----------+-----------+
+| RegNo | Name   | Gender | DOB        | MobileNo  | City      |
++-------+--------+--------+------------+-----------+-----------+
+|   103 | Raghav | M      | 2003-02-10 | 998877665 | Chennai   |
+|   104 | Sneha  | F      | 2002-07-30 | 909090909 | Bangalore |
++-------+--------+--------+------------+-----------+-----------+
+2 rows in set (0.016 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE City LIKE '%an%';
++-------+-------+--------+------------+-----------+-----------+
+| RegNo | Name  | Gender | DOB        | MobileNo  | City      |
++-------+-------+--------+------------+-----------+-----------+
+|   104 | Sneha | F      | 2002-07-30 | 909090909 | Bangalore |
++-------+-------+--------+------------+-----------+-----------+
+1 row in set (0.015 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE LENGTH(Name) <> 6;
++-------+-------+--------+------------+-----------+-----------+
+| RegNo | Name  | Gender | DOB        | MobileNo  | City      |
++-------+-------+--------+------------+-----------+-----------+
+|   101 | Arjun | M      | 2002-05-14 | 987654321 | Mumbai    |
+|   102 | Priya | F      | 2001-11-23 | 912345678 | Delhi     |
+|   104 | Sneha | F      | 2002-07-30 | 909090909 | Bangalore |
+|   105 | Karan | M      | 2001-09-18 | 919191919 | Kolkata   |
++-------+-------+--------+------------+-----------+-----------+
+4 rows in set (0.016 sec)
+
+mysql>
+mysql> SELECT *
+    -> FROM student
+    -> WHERE Name LIKE '%am%';
+Empty set (0.023 sec)
+
+mysql>

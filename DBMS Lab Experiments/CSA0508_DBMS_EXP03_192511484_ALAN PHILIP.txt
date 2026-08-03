@@ -1,0 +1,159 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 9.6.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use university;
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| course               |
+| department           |
+| faculty              |
+| student              |
++----------------------+
+4 rows in set (0.044 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| RegNo    | int         | NO   | PRI | NULL    |       |
+| Name     | varchar(15) | YES  |     | NULL    |       |
+| Gender   | char(1)     | YES  |     | NULL    |       |
+| DOB      | date        | YES  |     | NULL    |       |
+| MobileNo | int         | YES  |     | NULL    |       |
+| City     | varchar(15) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.051 sec)
+
+mysql> INSERT INTO student (RegNo, Name, Gender, DOB, MobileNo, City) VALUES
+    -> (101, 'Arjun', 'M', '2002-05-14', 987654321, 'Mumbai'),
+    -> (102, 'Priya', 'F', '2001-11-23', 912345678, 'Delhi'),
+    -> (103, 'Rahul', 'M', '2003-02-10', 998877665, 'Chennai'),
+    -> (104, 'Sneha', 'F', '2002-07-30', 909090909, 'Bangalore'),
+    -> (105, 'Karan', 'M', '2001-09-18', 919191919, 'Kolkata');
+Query OK, 5 rows affected (0.144 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| FacNo    | varchar(4)  | NO   | PRI | NULL    |       |
+| FacName  | varchar(15) | YES  |     | NULL    |       |
+| Gender   | char(1)     | YES  |     | NULL    |       |
+| DOB      | date        | YES  |     | NULL    |       |
+| DOJ      | date        | YES  |     | NULL    |       |
+| MobileNo | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.036 sec)
+
+
+mysql> INSERT INTO faculty (FacNo, FacName, Gender, DOB, DOJ, MobileNo) VALUES
+    -> ('F001', 'Ramesh', 'M', '1980-06-15', '2010-07-01', 987654321),
+    -> ('F002', 'Sita',   'F', '1985-09-20', '2012-03-15', 912345678),
+    -> ('F003', 'Arvind', 'M', '1978-12-05', '2008-11-10', 998877665),
+    -> ('F004', 'Meena',  'F', '1990-02-14', '2015-06-25', 909090909),
+    -> ('F005', 'Kiran',  'M', '1983-04-22', '2011-09-05', 919191919);
+Query OK, 5 rows affected (0.057 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc department;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| DeptNo   | varchar(4)  | NO   | PRI | NULL    |       |
+| DeptName | varchar(15) | YES  |     | NULL    |       |
+| DeptHead | varchar(4)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.037 sec)
+
+mysql> INSERT INTO department (DeptNo, DeptName, DeptHead) VALUES
+    -> ('D101', 'ComputerSci', 'F123'),
+    -> ('D102', 'Mathematics', 'F245'),
+    -> ('D103', 'Physics',     'F356'),
+    -> ('D104', 'Chemistry',   'F478');
+Query OK, 4 rows affected (0.066 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> desc course;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| CourseNo   | varchar(3)  | NO   | PRI | NULL    |       |
+| CourseDesc | varchar(14) | YES  |     | NULL    |       |
+| CourseType | char(1)     | YES  |     | NULL    |       |
+| SemNo      | char(1)     | YES  |     | NULL    |       |
+| HallNo     | varchar(4)  | YES  |     | NULL    |       |
+| FacNo      | varchar(4)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.030 sec)
+
+mysql> INSERT INTO course (CourseNo, CourseDesc, CourseType, SemNo, HallNo, FacNo) VALUES
+    -> ('C01', 'Mathematics',   'T', '1', 'H101', 'F123'),
+    -> ('C02', 'DBMS',          'T', '3', 'H102', 'F245'),
+    -> ('C03', 'DataStruct',    'T', '4', 'H103', 'F356'),
+    -> ('C04', 'Python',        'P', '2', 'H104', 'F478'),
+    -> ('C05', 'Physics',       'T', '2', 'H105', 'F589');
+Query OK, 5 rows affected (0.070 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++-------+-------+--------+------------+-----------+-----------+
+| RegNo | Name  | Gender | DOB        | MobileNo  | City      |
++-------+-------+--------+------------+-----------+-----------+
+|   101 | Arjun | M      | 2002-05-14 | 987654321 | Mumbai    |
+|   102 | Priya | F      | 2001-11-23 | 912345678 | Delhi     |
+|   103 | Rahul | M      | 2003-02-10 | 998877665 | Chennai   |
+|   104 | Sneha | F      | 2002-07-30 | 909090909 | Bangalore |
+|   105 | Karan | M      | 2001-09-18 | 919191919 | Kolkata   |
++-------+-------+--------+------------+-----------+-----------+
+5 rows in set (0.033 sec)
+
+mysql> select * from faculty;
++-------+---------+--------+------------+------------+-----------+
+| FacNo | FacName | Gender | DOB        | DOJ        | MobileNo  |
++-------+---------+--------+------------+------------+-----------+
+| F001  | Ramesh  | M      | 1980-06-15 | 2010-07-01 | 987654321 |
+| F002  | Sita    | F      | 1985-09-20 | 2012-03-15 | 912345678 |
+| F003  | Arvind  | M      | 1978-12-05 | 2008-11-10 | 998877665 |
+| F004  | Meena   | F      | 1990-02-14 | 2015-06-25 | 909090909 |
+| F005  | Kiran   | M      | 1983-04-22 | 2011-09-05 | 919191919 |
++-------+---------+--------+------------+------------+-----------+
+5 rows in set (0.013 sec)
+
+mysql> select * from department;
++--------+-------------+----------+
+| DeptNo | DeptName    | DeptHead |
++--------+-------------+----------+
+| D101   | ComputerSci | F123     |
+| D102   | Mathematics | F245     |
+| D103   | Physics     | F356     |
+| D104   | Chemistry   | F478     |
++--------+-------------+----------+
+4 rows in set (0.014 sec)
+
+mysql> select * from course;
++----------+-------------+------------+-------+--------+-------+
+| CourseNo | CourseDesc  | CourseType | SemNo | HallNo | FacNo |
++----------+-------------+------------+-------+--------+-------+
+| C01      | Mathematics | T          | 1     | H101   | F123  |
+| C02      | DBMS        | T          | 3     | H102   | F245  |
+| C03      | DataStruct  | T          | 4     | H103   | F356  |
+| C04      | Python      | P          | 2     | H104   | F478  |
+| C05      | Physics     | T          | 2     | H105   | F589  |
++----------+-------------+------------+-------+--------+-------+
+5 rows in set (0.019 sec)
+
+mysql>
